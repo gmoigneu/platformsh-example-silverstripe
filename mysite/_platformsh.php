@@ -24,4 +24,12 @@ foreach ($relationships['database'] as $endpoint) {
     );
 }
 
+$variables = getenv("PLATFORM_VARIABLES");
+if($variables) {
+  $variables = json_decode(base64_decode($variables), true);
+
+  define('SS_DEFAULT_ADMIN_USERNAME', ($variables['SS_DEFAULT_ADMIN_USERNAME']) ? $variables['SS_DEFAULT_ADMIN_USERNAME'] : 'username');
+  define('SS_DEFAULT_ADMIN_PASSWORD', ($variables['SS_DEFAULT_ADMIN_PASSWORD']) ? $variables['SS_DEFAULT_ADMIN_PASSWORD'] : 'password');
+}
+
 ?>
